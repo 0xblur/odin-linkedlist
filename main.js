@@ -35,6 +35,23 @@ class LinkedList {
 		return current;
 	}
 
+	removeAt(index) {
+		//TODO: Implement
+		if (index === 0) {
+			this.head = this.head.next;
+			this.size--;
+		} else {
+			let current = this.head;
+			let previous;
+			for (let i = 1; i <= index; i++) {
+				previous = current;
+				current = current.next;
+			}
+			previous.next = current.next;
+			if (current.next === null) this.tail = previous;
+			this.size--;
+		}
+	}
 
 	pop() {
 		let current = this.head;

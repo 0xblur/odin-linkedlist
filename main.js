@@ -36,7 +36,6 @@ class LinkedList {
 	}
 
 	removeAt(index) {
-		//TODO: Implement
 		if (index === 0) {
 			this.head = this.head.next;
 			this.size--;
@@ -50,6 +49,33 @@ class LinkedList {
 			previous.next = current.next;
 			if (current.next === null) this.tail = previous;
 			this.size--;
+		}
+	}
+
+	insertAt(value, index) {
+		if (index >= this.size) {
+			this.append(value);
+			return;
+		}
+
+		if (index <= 0) {
+			this.prepend(value);
+			return;
+		}
+
+		const node = new Node(value);
+		let current = this.head;
+		let previous;
+		for (let i = 1; i <= index; i++) {
+			previous = current;
+			current = current.next;
+		}
+		if (current === null) {
+			this.append(value);
+		} else {
+			previous.next = node;
+			node.next = current;
+			this.size++;
 		}
 	}
 
